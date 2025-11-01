@@ -1,0 +1,16 @@
+# Render service definition for a scheduled job
+services:
+  - type: cron
+    name: cgi-f1-monitor
+    env: python
+    plan: free
+    schedule: "0,30 * * * *"
+    shell: "python main.py"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python main.py"
+    envVars:
+      - key: MJ_APIKEY_PUBLIC
+      - key: MJ_APIKEY_PRIVATE
+      - key: RECIPIENT_EMAIL
+      - key: FROM_EMAIL
+      - key: CONSULATE_URLS
